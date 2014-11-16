@@ -1,0 +1,429 @@
+body{
+  margin:0;
+  overflow-y: scroll; 
+}
+img {
+  width: auto\9;
+  height: auto;
+  position: relative;
+}
+#grid{  min-height:500px;  }
+#grid2{  min-height:300px;  }
+
+/* ********************************** CONFIGURE YOUR THEMES HERE ********************************** */
+
+/* ==== THEME 1 Portfolio==== */
+ul.theme1{ text-align: left; }
+.theme1 .thumbnail-caption{ background: #2A80B9;background: rgba(42, 128,185, 0.95);   }
+   
+/* ==== THEME 2 Video==== */
+.theme2 .thumbnail-caption{ background: #f0f0f0 !important; }
+.theme2 .box-caption{ background: #f0f0f0 !important; } 
+
+/* ==== THEME 3 Pinterest Style Blog ==== */
+ul.theme3 { text-align: left; }
+.theme3 .thumbnail-caption{ background: #2A80B9; background: rgba(42, 128,185, 0.95); }
+.theme3 .box-caption{ background: #f5f5f5; padding: 10px 20px 20px; }
+.theme3 .box-caption .box-title { font-size:16px!important; margin:5px 0; }
+.theme3 .box-caption .box-date { color: #777!important; }
+  
+/* ==== THEME 4 Text Hover Block ==== */
+ul.theme4 { text-align: left; }
+.theme4 .thumbnail-caption>div>div { text-align: left; padding: 0; }
+.theme4 .box-caption { background: transparent; padding: 0 20px; }
+.theme4 .thumbnail-caption{ background: #f5f5f5!important; }
+.theme4  .box-caption .box-title { font-weight:700!important; }
+
+/* *************************************** DEFAULTS FONTS AND COLORS *************************************** */
+
+.box, .category-navbar, .mediaBoxes-loadMore, .mediaBoxes-lightbox{
+	font-size: 14px;
+	color: #555;
+	line-height: 15px;
+}
+
+/* --- STYLE OF THE BOX CAPTION  --> */
+.box-caption{ background: white; font-size: 13px; }
+.hover-text{ margin-bottom: 15px; font-size: 17px; }
+
+/* --- THE THUMBNAIL CAPTION  --> */
+.thumbnail-caption { text-align: center; }
+
+/* --- THE TIMER OF THE LIGHTBOX --> */
+.lightbox-timer { background-color: white; }
+
+/* --- BACKGROUND COLOR OF THE NAV OF THE LIGHTBOX --> */
+.mediaBoxes-nav { background: black; }
+
+/* --- BACKGROUND COLOR OF THE LIGHTBOX --> */
+.mediaBoxes-lightbox{
+  background: #313131; 
+  background: rgba(0,0,0,.90);
+}
+
+/* *************************************** HIDE THE BOXES WHEN THE PAGE LOAD *************************************** */
+.box{
+	display: none;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity:inherit;
+	filter:inherit;
+  -webkit-border-radius: 1px !important;
+     -moz-border-radius: 1px !important;
+          border-radius: 1px !important;
+  overflow: hidden;
+}
+
+/* *************************************** CATEGORY NAVIGATION BAR *************************************** */
+
+.category-navbar{
+	list-style: none;
+	margin: 0 0 15px 0;
+	padding: 12px 0 6px 0px;
+	width: 100%;
+	text-align: left;
+}
+.category-navbar li{
+	display: inline-block;
+	line-height: 16px;
+	margin: 0 5px 5px 0px;
+	padding: 5px 0 15px 0;
+}
+.category-navbar li a{
+	cursor: pointer;
+	color: #eee;
+	font-size: 12px;letter-spacing:1px;
+	font-weight: 600;
+	text-decoration: none;
+	margin:0px 0px;text-transform:uppercase;
+	padding: 8px 14px;
+	border-radius:2px;
+	background: #2E3138;
+}
+.category-navbar li a:hover{
+	text-decoration: none;
+	background: #333333;
+	color: #fff;
+}
+.category-navbar li.select a{    background:#09b0dd !important;color: #fff; }
+
+
+/* *************************************** BOX HTML *************************************** */
+
+div.box-iframe{ background: #161616;  width:100%; height:100%; }
+iframe.box-iframe{
+  border: 0;
+  padding: 0;
+  background: #161616;
+  display:block; width:100%; height:100%;
+}
+.box-caption{ display: block; padding: 20px; position: relative; }
+.box-video:hover .video-circle{
+    -webkit-transform: scale(1.2);
+       -moz-transform: scale(1.2);
+         -o-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+}
+.video-circle{
+    -webkit-transition: all .3s;
+       -moz-transition: all .3s;
+         -o-transition: all .3s;
+        -ms-transition: all .3s;
+            transition: all .3s;
+	content: "";
+    -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+border:2px solid white;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    margin-top: -15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+}
+.video-arrow{
+    content: "";
+    background: none;
+    width: 0;
+    height: 0;
+    border-left: 15px solid white;
+    border-bottom: 8px solid transparent;
+    border-top: 8px solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -8px;
+    margin-left: -6px;
+    z-index: 3;
+}
+.box-caption .box-title{
+  	letter-spacing: 0px;
+	line-height: 1.1;
+	width: 100%;
+ 	color: #444!important;
+	font-size:14px!important; 
+	font-weight:500;
+  -webkit-transition: all .2s;
+     -moz-transition: all .2s;
+       -o-transition: all .2s;
+      -ms-transition: all .2s;
+          transition: all .2s;
+}
+.box-caption .box-text{ margin: 13px 0px 13px 0 !important; }
+.box-caption .box-more a{
+  	text-decoration: none !important;
+  	color: inherit;
+  	padding: 0;
+  	margin: 0;
+  	color: #2A80B9;
+  	font-weight: 500;
+}
+.box-caption .box-more a:hover { color: #333; }
+
+/* *************************************** CAPTION STYLE *************************************** */
+.box{ overflow: hidden; }
+.hover-lightbox, .hover-url, .hover-text, .hover-iframe{ position: relative; }
+.hover-lightbox, .hover-url, .hover-iframe{
+	cursor: pointer;
+	display: inline-block;
+	margin-top: 1px;
+	line-height: 14px;
+	width: 29px;
+	height: 29px;
+	background: url(../img/caption-icons.png);
+	background-position: 0px 0px;
+	margin: 0 6px;
+}
+.hover-url{ background-position: -50px 1px; }
+.hover-iframe{ background-position: -97px 0px; }
+.hover-lightbox:hover, .hover-url:hover, .hover-iframe:hover{ -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; filter: alpha(opacity=80); 
+opacity: 0.8; }
+.box-image{ position: relative; overflow: hidden; }
+.lightbox-text{ display: none; }
+
+.thumbnail-caption{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+/* The style for centering the caption (vertically and horizontally) */
+.thumbnail-caption>div{ height: 100%; width: 100%; display: table !important; }
+.thumbnail-caption>div>div{
+	padding: 15px;
+	display: table-cell !important;
+    vertical-align: middle; /* FOR VERTICAL ALIGN */
+    text-align:center; /* FOR HORIZONTAL ALIGN */
+}
+
+/* *************************************** LOADING STYLE *************************************** */
+.mediaBoxes-loader, .mediaBoxes-loadMore{
+   height: 15px;
+   padding: 10px 15px 10px 15px;
+   margin: 20px auto;
+}
+.mediaBoxes-loader{
+  width: 43px;
+  background: url(../img/loader.gif) no-repeat;
+  background-position:center;
+}
+.mediaBoxes-loadMore{
+  cursor: pointer;
+  width: 130px;
+  text-align: center;
+  color: white;
+  background-color:  #2e3138;
+  font-size: 13px !important;
+border-radius:5px;
+  -webkit-box-sizing: content-box !important;
+     -moz-box-sizing: content-box !important;
+          box-sizing: content-box !important;
+	-webkit-transition:background-color .2s ease-in;
+    -moz-transition:background-color .2s ease-in;
+    -o-transition:background-color .2s ease-in;
+    transition:background-color .2s ease-in;
+}
+.mediaBoxes-loadMore:hover{ text-decoration: none; background-color:#2A80B9; }
+
+/* *************************************** LIGHT-BOX STYLE *************************************** */
+.lightbox-alignment{
+  height: 100%;
+  width: 100%;
+  display: table !important;
+  table-layout: fixed !important;
+}
+.lightbox-alignment2{
+  display: table-cell !important;
+  vertical-align: middle; /* FOR VERTICAL ALIGN */
+  text-align:center; /* FOR HORIZONTAL ALIGN */
+}
+.mediaBoxes-lightbox img{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.open-lightbox-iframe{ cursor: pointer; }
+.lightbox-timer{
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+}
+.lb-loader{
+  width: 43px;
+  height: 11px;
+  background: url(../img/lightbox-loader.gif);
+  margin: 20px auto;
+}
+.mediaBoxes-lightbox{
+  display: none;
+  position: fixed;
+  top:0;
+  width: 100%;
+  height: 100%;
+  z-index: 1500;
+  text-align: center;
+}
+.mediaBoxes-lightbox img{ max-width: 100%; vertical-align: top; }
+.mediaBoxes-lightbox iframe{ max-width:  100%; }
+.mediaBoxes-nav{
+  margin-top: -57px;
+  height: 57px;
+  width: 100%;
+	border-bottom: 1px solid #1D1D1D;
+}
+.mediaBoxes-play, .mediaBoxes-close, .mediaBoxes-next, .mediaBoxes-prev, .mediaBoxes-font{
+  width: 88px;
+  height: 57px;
+  position: relative;
+  cursor: pointer;
+}
+.mediaBoxes-play:hover, .mediaBoxes-close:hover, .mediaBoxes-next:hover, .mediaBoxes-prev:hover, .mediaBoxes-font:hover{
+	background: #1B1B1B; 
+}
+.selected{ background: black;}
+.selected .iconPlay {  background-position: -164px -3px; }
+.mediaBoxes-lbcaption{
+  float: left;
+  color: white;
+  height: 57px;
+  font-size: 16px;
+}
+.mediaBoxes-lbcaption span{
+  margin-left: 3px;
+  color: #D7D7D7;
+  font-size: 11px;
+}
+.mediaBoxes-lbcaption>div{
+  height: 100%;
+  width: 100%;
+  display: table !important;
+}
+.mediaBoxes-lbcaption>div>div{
+  padding: 0 15px 0 15px;
+  display: table-cell !important;
+    vertical-align: middle; /* FOR VERTICAL ALIGN */
+    text-align:center; /* FOR HORIZONTAL ALIGN */
+}
+.mediaBoxes-play, .mediaBoxes-close{ float: right; }
+.mediaBoxes-next, .mediaBoxes-prev{ float: right; }
+.iconPlay, .iconClose, .iconNext, .iconPrev{
+  	font-family: 'FontAwesome';
+	speak: none;
+	font-size: 22px;
+	line-height: 62px;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	display: block;
+	-webkit-font-smoothing: antialiased;
+	color:  #eee;
+	-webkit-transition:all .3s;
+     -moz-transition:all .3s;
+       -o-transition:all .3s;
+      -ms-transition:all .3s;
+          transition:all .3s;
+} 
+.iconPlay:hover, .iconClose:hover, .iconNext:hover, .iconPrev:hover{
+	color:  #8E939A;
+	-webkit-transition:all .3s;
+     -moz-transition:all .3s;
+       -o-transition:all .3s;
+      -ms-transition:all .3s;
+          transition:all .3s;
+} 
+.iconClose:before { content: "\f057"; }
+.iconPlay:before { content: "\f144"; }
+.iconNext, .iconPrev {  margin: -1px 0 0 0px; }
+.iconPrev:before { content: "\f04a"; }
+.iconNext:before { content: "\f04e"; }
+.selected{ background:  #222; }
+.selected .iconPlay:before { content: "\f04c"; color: #eee; }
+.selected:hover .iconPlay:before { color:#8E939A; }
+
+/* *************************************** GRID STYLE *************************************** */
+.centered {  margin: auto;}
+.box {
+  line-height: 20px;
+  float: left;
+  -webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;
+}
+.box img{ display: block; width: 100%; }
+.rtl .box {
+  float: right;
+  text-align: right; 
+  direction: rtl;
+}
+/**** Transitions ****/
+.transitions-enabled.masonry,
+.transitions-enabled.masonry .masonry-brick {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+      -ms-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+.transitions-enabled.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+.transitions-enabled.masonry  .masonry-brick {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+      -ms-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
+}
+/* disable transitions on container */
+.transitions-enabled.infinite-scroll.masonry {
+  -webkit-transition-property: none;
+     -moz-transition-property: none;
+      -ms-transition-property: none;
+       -o-transition-property: none;
+          transition-property: none;
+}
+/**** Clearfix ****/
+.mediaBoxes-clearfix:before, .mediaBoxes-clearfix:after { content: ""; display: table; }
+.mediaBoxes-clearfix:after { clear: both; }
+.mediaBoxes-clearfix { zoom: 1; }
+.centered{ /*overflow: auto;*/ width: 100%;}
+.visible{ overflow: visible !important; }
+.noTransform{
+  -webkit-transform: none !important;
+     -moz-transform: none !important;
+       -o-transform: none !important;
+      -ms-transform: none !important;
+          transform: none !important;
+}

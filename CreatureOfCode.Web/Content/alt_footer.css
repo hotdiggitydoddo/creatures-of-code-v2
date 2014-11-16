@@ -1,0 +1,48 @@
+/***************************************************
+	ALTERNATIVE FOOTER
+ ***************************************************/
+#footer_alt {
+	position:relative;
+	line-height:22px;	
+	padding:50px 0 50px; 
+	opacity:1.0;
+	background:#2E3138; 
+	margin:20px 0 0; 
+}
+#footer_alt  li {
+	padding:0px 15px 8px 0;
+	margin:0px 0px 7px 0px;
+	line-height:22px;
+}
+#footer_alt  li:last-child { padding-bottom: 0; margin-bottom: 0; }
+#footer_alt a { color:#bbb; }
+#footer_alt a:hover { color:#eee; }
+#footer_alt  h6 {
+	font-size:13px ;
+	color: #bbb;
+	letter-spacing:1px;
+	text-transform:uppercase;
+	margin-bottom:12px;
+	padding:0 0 10px;
+	font-weight:700;
+	letter-spacing:0.15em;
+}
+
+
+
+#footer_alt ul { padding:0; margin:0; list-style:none; }
+#footer_alt i { margin-right:10px; margin-left:1px; }
+
+/* SOCIAL FEED */	
+.social-feed{
+	margin: 0 0px 0 0px;
+	padding-right: 0; 
+	display: block;
+	width: 100%;
+	display: table;
+}
+.social-feed li{ list-style: none; float: left;  }
+.social-feed li img{ width: 53px; height: 53px; }
+
+
+
