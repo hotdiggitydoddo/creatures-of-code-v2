@@ -12,7 +12,7 @@ namespace CreaturesOfCode.Core
         public string Author { get; set; }
         public string Content { get; set; }
         public DateTime PublishDate { get; set; }
-        public Post Post { get; set; }
-        public Comment ParentComment { get; set; }
+        public virtual Post Post { get; set; }
+        public virtual Comment ParentComment { get; set; }
     }
 }
