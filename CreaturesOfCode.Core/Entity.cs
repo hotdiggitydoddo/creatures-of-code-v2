@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CreaturesOfCode.Core
 {
-    public class Tag : Entity
+    public abstract class Entity
     {
-        public string Name { get; set; }
-        public virtual ICollection<Post> Posts { get; set; } 
+        public int Id { get; set; }
     }
 }

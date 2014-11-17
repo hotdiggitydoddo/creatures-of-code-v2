@@ -7,9 +7,8 @@ using CreaturesOfCode.Core.Models;
 
 namespace CreaturesOfCode.Core
 {
-    public class Post
+    public class Post : Entity
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public DateTime PublishDate { get; set; }
         public string Content { get; set; }

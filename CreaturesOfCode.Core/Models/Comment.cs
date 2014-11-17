@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CreaturesOfCode.Core
 {
-    public class Comment
+    public class Comment : Entity
     {
-        public int Id { get; set; }
         public string Author { get; set; }
         public string Content { get; set; }
         public DateTime PublishDate { get; set; }
