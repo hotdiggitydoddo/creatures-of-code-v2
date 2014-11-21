@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CreaturesOfCode.Core.Models
+namespace CreaturesOfCode.Core
 {
     public class Category : Entity
     {

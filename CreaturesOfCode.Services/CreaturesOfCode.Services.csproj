@@ -39,7 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPostService.cs" />
+    <Compile Include="PostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CreaturesOfCode.Core\CreaturesOfCode.Core.csproj">
+      <Project>{bb7b77b8-22fb-492a-b949-dc852637204b}</Project>
+      <Name>CreaturesOfCode.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CreaturesOfCode.Data\CreaturesOfCode.Data.csproj">
+      <Project>{a112fa69-a6db-4b26-8471-056919a81a65}</Project>
+      <Name>CreaturesOfCode.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using CreaturesOfCode.Core;
 
 namespace CreaturesOfCode.Data
@@ -8,6 +10,7 @@ namespace CreaturesOfCode.Data
     public interface IRepository<TEntity> where TEntity : Entity
     {
         TEntity Get(int id);
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> where);
         IEnumerable<TEntity> GetAll();
         TEntity Create(TEntity entity);
         TEntity Delete(TEntity entity);
@@ -28,6 +31,11 @@ namespace CreaturesOfCode.Data
         public TEntity Get(int id)
         {
             return _context.Set<TEntity>().FirstOrDefault(x => x.Id == id);
+        }
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> where)
+        {
+            return _context.Set<TEntity>().Where(where);
         }
 
         public IEnumerable<TEntity> GetAll()
