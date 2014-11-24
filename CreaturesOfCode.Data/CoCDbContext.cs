@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CreaturesOfCode.Core;
-using CreaturesOfCode.Core.Models;
 
 namespace CreaturesOfCode.Data
 {
@@ -16,19 +15,34 @@ namespace CreaturesOfCode.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Category> Categories { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public CoCDbContext() : base("CoCDbContext")
         {
-            modelBuilder.Entity<Tag>()
-                .HasMany(t => t.Posts)
-                .WithMany(t => t.Tags)
-                .Map(m =>
-                {
-                    m.ToTable("PostTags");
-                    m.MapLeftKey("PostId");
-                    m.MapRightKey("TagId");
-                });
-
-            base.OnModelCreating(modelBuilder);
+            
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Tag>()
+        //        .HasMany(t => t.Posts)
+        //        .WithMany(t => t.Tags)
+        //        .Map(m =>
+        //        {
+        //            m.ToTable("PostTags");
+        //            m.MapLeftKey("PostId");
+        //            m.MapRightKey("TagId");
+        //        });
+
+        //    modelBuilder.Entity<Post>()
+        //    .HasMany(t => t.Comments)
+        //    .Map(m =>
+        //    {
+        //        m.ToTable("PostTags");
+        //        m.MapLeftKey("PostId");
+        //        m.MapRightKey("TagId");
+        //    });
+
+
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }

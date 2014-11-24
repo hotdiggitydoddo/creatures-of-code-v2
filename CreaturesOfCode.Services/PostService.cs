@@ -28,7 +28,7 @@ namespace CreaturesOfCode.Services
 
         public Post CreatePost(string title, string content, string category, List<string> tags)
         {
-            var cat = _categoryRepository.Find(x => x.Name == category).SingleOrDefault() ??
+            var cat = _categoryRepository.Find(x => String.Equals(x.Name, category, StringComparison.CurrentCultureIgnoreCase)).SingleOrDefault() ??
                       _categoryRepository.Create(new Category
             {
                 Name = category,
@@ -39,15 +39,16 @@ namespace CreaturesOfCode.Services
                 Title = title,
                 Content = content,
                 PublishDate = DateTime.UtcNow,
-                Category = cat
+                Category = cat,
             });
 
             return post;
         }
 
+
         public Post GetPostById(int id)
         {
-            throw new NotImplementedException();
+            return _postRepository.Get(id);
         }
     }
 }

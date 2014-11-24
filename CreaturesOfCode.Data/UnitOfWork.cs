@@ -41,8 +41,10 @@ namespace CreaturesOfCode.Data
 
         public void SaveChanges()
         {
-            if (_context != null) 
-                _context.SaveChanges();
+            if (_context != null)
+            {
+                var i = _context.SaveChanges();
+            }
         }
     }
 }

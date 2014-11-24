@@ -17,8 +17,6 @@ namespace CreaturesOfCode.Data
         void Update(TEntity entity);
     }
 
-
-
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
         private readonly DbContext _context;

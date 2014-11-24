@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using CreaturesOfCode.Core;
-using CreaturesOfCode.Core.Models;
 
 namespace CreaturesOfCode.Data.Migrations
 {
