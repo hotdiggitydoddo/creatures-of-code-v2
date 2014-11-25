@@ -91,18 +91,18 @@ ul.theme4 { text-align: left; }
 }
 .category-navbar li a{
 	cursor: pointer;
-	color: #eee;
+	color: #C2FFFF;
 	font-size: 12px;letter-spacing:1px;
 	font-weight: 600;
 	text-decoration: none;
 	margin:0px 0px;text-transform:uppercase;
 	padding: 8px 14px;
 	border-radius:2px;
-	background: #2E3138;
+	background: #2D3E5C;
 }
 .category-navbar li a:hover{
 	text-decoration: none;
-	background: #333333;
+	background: #536593;
 	color: #fff;
 }
 .category-navbar li.select a{    background:#09b0dd !important;color: #fff; }

@@ -22,8 +22,22 @@ namespace CreatureOfCode.Web.Controllers
 
         public ActionResult Index()
         {
-            var posts = _postservice.GetPostById(0);
-            return View();
+            var posts = _postservice.GetLatestPosts();
+            var previews = new List<PostPreviewModel>();
+
+            foreach (var post in posts)
+            {
+                previews.Add(new PostPreviewModel
+                {
+                    PostId = post.Id,
+                    PublishDate = post.PublishDate,
+                    Title = post.Title,
+                    ContentSnippet = post.Content.Substring(0, post.Content.IndexOf('.') + 1),
+                    CategoryName = post.Category.Name
+                });
+            }
+            return View(previews);
+
         }
 
         public ActionResult Create()
@@ -34,17 +48,18 @@ namespace CreatureOfCode.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(PostModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            var p = _postservice.CreatePost(model.Title, model.Content, model.Category, new List<string>());
+            _postservice.CreatePost(model.Title, model.Content, model.Category, model.Tags);
             _uow.SaveChanges();
 
-            return View(model);
+            return RedirectToAction("Index");
         }
 
-        
+
     }
 }

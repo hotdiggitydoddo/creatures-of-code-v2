@@ -23,6 +23,10 @@ namespace CreaturesOfCode.Data.Migrations
                     Title = "Test Post", 
                     Content = "This is a test post.", 
                     PublishDate = DateTime.UtcNow,
+                    Category = new Category
+                    {
+                        Name = "Testing"
+                    }
                 }
                 
             );

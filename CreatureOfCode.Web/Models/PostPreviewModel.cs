@@ -11,5 +11,6 @@ namespace CreatureOfCode.Web.Models
         public string Title { get; set; }
         public string ContentSnippet { get; set; }
         public DateTime PublishDate { get; set; }
+        public string CategoryName { get; set; }
     }
 }
