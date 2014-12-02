@@ -1,12 +1,40 @@
-﻿@model CreatureOfCode.Web.Models.PostModel
+﻿@model PostModel
 @{
     ViewBag.Title = "Create";
 }
+<!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
+@*<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.min.css" />
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.min.css" />*@
+
+<link href="~/Content/summernote.css" rel="stylesheet" />
+@*<link href="~/Content/summernote-bs3.css" rel="stylesheet" />*@
+
+
+<style>
+    .note-editor .btn-group > .btn, .note-editor .btn-group-vertical > .btn {
+        color: black !important;
+    }
+
+    .note-editable {
+        background-color: white;
+    }
+
+    .modal-dialog {
+        color: black;
+    }
+
+</style>
+
+@*<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.min.js"></script>*@
+<script src="~/Scripts/summernote.js"></script>
+
 
 <div class="container">
     <h2>Create a post</h2>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div id="fields">
                 @using (Html.BeginForm("Create", "Blog", null, FormMethod.Post, new { id = "ajax-contact-form" }))
                 {
@@ -21,9 +49,9 @@
                         @Html.TextBoxFor(x => x.Category, new { placeholder = "Category", @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Category)
                     </div>
-
+                    
                     <div class="form-group">
-                        @Html.TextAreaFor(x => x.Content, new { placeholder = "Content", @class = "form-control" })
+                        @Html.TextAreaFor(x => x.Content, new { id = "summernote", placeholder = "Content", @class = "form-control summernote" })
                         @Html.ValidationMessageFor(x => x.Content)
                     </div>
 
@@ -39,5 +67,21 @@
         </div>
         <div class="col-md-6">&nbsp;</div>
     </div>
-
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            height: 150 //set editable area's height
+//            codemirror: {
+//// codemirror options
+//                theme: 'monokai'
+//            }
+        });
+    });
+
+
+    $("#ajax-contact-form").submit(function() {
+        $('textarea[name="Content"]').val($('#summernote').code());
+    });
+</script>

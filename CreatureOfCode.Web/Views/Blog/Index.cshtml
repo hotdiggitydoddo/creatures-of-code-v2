@@ -1,4 +1,4 @@
-﻿@model List<CreatureOfCode.Web.Models.PostPreviewModel>
+﻿@model List<PostPreviewModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -31,6 +31,10 @@
 </style>
 <div class="container pad60">
     <div class="col-md-12">
+        @if (ViewBag.Tag != null)
+        {
+            <h4>All things <em>"#@ViewBag.Tag"</em>. . . </h4>
+        }
         <div id="grid">
             @foreach (var item in Model)
             {
@@ -39,9 +43,9 @@
                         <div class="box-title">@item.Title</div>
                         <div class="box-date">@item.PublishDate</div>
                         <div class="box-text">
-                            @item.ContentSnippet
+                            @Html.Raw(@item.ContentSnippet)
                         </div>
-                        <div class="box-more"> <a href="#">Read More</a> </div>
+                        <div class="box-more"> @Html.ActionLink("Read More...", "Read", "Blog", null, null, null, new { id = item.PostId }, null)</div>
                     </div>
                 </div>
             }

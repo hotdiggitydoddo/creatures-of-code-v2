@@ -20,9 +20,10 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script src="/Scripts/jquery.js"></script>
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
     <script src="/Scripts/bootstrap.min.js"></script>
     <script src="/Scripts/modernizr.custom.js"></script>
+
 </head>
 
     <body>
@@ -70,7 +71,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">Blog</a>
+                                @Html.ActionLink("Blog", "Index", "Blog")
                             </li>
                             <li>
                                 <a href="#">About</a>
@@ -136,7 +137,7 @@
 
                 <!--column 4-->
                 <div class="col-sm-6 col-md-3">
-                    <h6>flickr photostream</h6>
+                    <h6>instagram</h6>
 
                     <article class="social-feed flickr-feed"></article>
                 </div>
@@ -160,12 +161,17 @@
         <script>
             //<![CDATA[
             /* ================ FLICKR FEED  - ADD YOUR USERNAME ================ */
-            $('.flickr-feed').socialstream({
-                socialnetwork: 'flickr',
-                limit: 9,
-                username: 'Daniele Zedda'
-            })
+            //$('.flickr-feed').socialstream({
+            //    socialnetwork: 'flickr',
+            //    limit: 9,
+            //    username: 'Daniele Zedda'
+            //})
             //]]>
+            $('.flickr-feed').socialstream({
+                socialnetwork: 'instagram',
+                limit: 9,
+                username: 'hotdiggitydoddo'
+            })
         </script>
     </body>
 </html>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CreatureOfCode.Web.Models
+namespace CreatureOfCode.Web
 {
     public class PostPreviewModel
     {

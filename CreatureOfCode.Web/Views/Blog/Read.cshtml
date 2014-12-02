@@ -1,0 +1,66 @@
+﻿@model ReadPostModel
+@{
+    ViewBag.Title = "Read";
+}
+
+<style>
+    .badge {
+        background-color: rgb(68, 155, 255);
+        color: white;
+        margin-right: 10px;
+    }
+
+        .badge:hover {
+            background-color: #93ADFF;
+        }
+</style>
+
+<script src="~/Scripts/syntax-highlighter/shCore.js"></script>
+<script src="~/Scripts/syntax-highlighter/shBrushCSharp.js"></script>
+@*<link href="~/Content/summernote-bs3.css" rel="stylesheet" />*@
+<link href="~/Content/syntax-highlighter/shCore.css" rel="stylesheet" />
+<link href="~/Content/syntax-highlighter/shCoreDefault.css" rel="stylesheet" />
+
+<div class="container pad90">
+    <div class="col-md-8">
+        <h1 class="blog-title">@Model.Title</h1>
+        <h6>
+            @Model.PublishDate.ToLocalTime().ToLongDateString() at @Model.PublishDate.ToLocalTime().ToShortTimeString()  - <span class="x-light meta category">@Model.Category.ToLower()</span>
+        </h6>
+        <!-- post -->
+        <div class="post">
+            @Html.Raw(Model.Content)
+        </div>
+        <div id="tags">
+            @foreach (var tag in Model.Tags)
+            {
+                @Html.ActionLink("#" + @tag.Name, "FindByTag", "Blog", new { tag = @tag.Name }, new { @class = "badge" })
+            }
+        </div>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+        <aside>
+            <div>
+                <h6>Categories</h6>
+                <ul class="fa-ul categories">
+                    @foreach (var category in Model.AllCategories)
+                    {
+                        <li><i class="fa-li fa fa-caret-right grey2"></i>@category</li>
+                    }
+                </ul>
+            </div>
+            <div class="pad25"></div>
+            <h6>Tags</h6>
+            @foreach (var kvp in Model.AllTags)
+            {
+                @*@Html.ActionLink(string.Format("#{0} ({1})", kvp.Key, @kvp.Value), "FindByTag", "Blog", new { tag = @kvp.Key }, new { @class = "badge", style = string.Format("font-size: {0}px", kvp.Value) })*@
+                @Html.ActionLink(string.Format("#{0}", kvp.Key), "FindByTag", "Blog", new { tag = @kvp.Key }, new { @class = "badge", style = string.Format("font-size: {0}px", kvp.Value) })
+            }    
+        </aside>
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>

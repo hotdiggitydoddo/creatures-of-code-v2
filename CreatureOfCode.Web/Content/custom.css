@@ -55,5 +55,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e3b', end
 }
 
 
-
+.category {
+    color: lime;
+}
 
