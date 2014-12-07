@@ -21,9 +21,13 @@
 <link href="~/Content/syntax-highlighter/shCore.css" rel="stylesheet" />
 <link href="~/Content/syntax-highlighter/shCoreDefault.css" rel="stylesheet" />
 
+<form method="post" id="deleteForm" action="@Url.Action("Delete", "Blog", new { id = Model.Id })">
+    @Html.AntiForgeryToken()
+</form>
+
 <div class="container pad90">
     <div class="col-md-8">
-        <h1 class="blog-title">@Model.Title</h1>
+        <h1 class="blog-title">@Model.Title <button class="pull-right btn btn-sm btn-warning" style="margin-top: 5px;" id="delete">delete</button> @Html.ActionLink("edit", "Edit", "Blog", new { id = Model.Id }, new { @class = "pull-right btn btn-sm btn-success", style = "margin-top: 5px" })  </h1>
         <h6>
             @Model.PublishDate.ToLocalTime().ToLongDateString() at @Model.PublishDate.ToLocalTime().ToShortTimeString()  - <span class="x-light meta category">@Model.Category.ToLower()</span>
         </h6>
@@ -63,4 +67,14 @@
 
 <script type="text/javascript">
     SyntaxHighlighter.all()
+
+
+$('document').ready(function() {
+    $('#delete').click(function(){
+        if (confirm('You sure?')) {
+            $('#deleteForm').submit(); //jquery
+        }
+        return false;
+    });
+});
 </script>

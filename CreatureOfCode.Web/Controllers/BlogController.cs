@@ -1,4 +1,5 @@
-﻿using CreatureOfCode.Web;
+﻿using System.Web.Routing;
+using CreatureOfCode.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,7 @@ namespace CreatureOfCode.Web.Controllers
 
             var model = new ReadPostModel
             {
+                Id = post.Id,
                 Title = post.Title,
                 Category = post.Category.Name,
                 Content = post.Content,
@@ -103,7 +105,43 @@ namespace CreatureOfCode.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit(int id)
+        {
+            var post = _postservice.GetPostById(id);
+
+            if (post == null) return new HttpNotFoundResult();
+
+            var model = new PostModel
+            {
+                Category = post.Category.Name,
+                Content = post.Content,
+                Title = post.Title,
+                Tags = string.Join(",", post.Tags.Select(x => x.Name)),
+                Id = post.Id
+            };
+
+            ViewBag.IsEditing = true;
+
+            return View("Create", model);
+        }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(PostModel model)
+        {
+            if (!ModelState.IsValid)
+                return View("Create", model);
+
+            var post = _postservice.EditPost(model.Id, model.Title, model.Content, model.Category, model.Tags);
+            if (post == null)
+                return new HttpStatusCodeResult(500, "An internal error occured while trying to update the post.");
+
+            _uow.SaveChanges();
+            return RedirectToAction("Read", new {id = post.Id});
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             if (_postservice.DeletePost(id))
@@ -115,23 +153,16 @@ namespace CreatureOfCode.Web.Controllers
         }
 
 
-        private List<PostPreviewModel> GeneratePostPreviews(List<Post> posts)
+        private List<PostPreviewModel> GeneratePostPreviews(IEnumerable<Post> posts)
         {
-            var previews = new List<PostPreviewModel>();
-
-            foreach (var post in posts)
+            return posts.Select(post => new PostPreviewModel
             {
-                previews.Add(new PostPreviewModel
-                {
-                    PostId = post.Id,
-                    PublishDate = post.PublishDate,
-                    Title = post.Title,
-                    ContentSnippet = post.Content.Substring(0, post.Content.IndexOf('.') + 1),
-                    CategoryName = post.Category.Name
-                });
-            }
-
-            return previews;
+                PostId = post.Id, 
+                PublishDate = post.PublishDate, 
+                Title = post.Title, 
+                ContentSnippet = post.Content.Substring(0, post.Content.IndexOf('.') + 1), 
+                CategoryName = post.Category.Name
+            }).ToList();
         }
     }
 }

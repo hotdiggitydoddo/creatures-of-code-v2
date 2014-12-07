@@ -1,6 +1,7 @@
 ﻿@model PostModel
 @{
     ViewBag.Title = "Create";
+    var isEditing = ViewBag.IsEditing != null && ViewBag.IsEditing;
 }
 <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
 @*<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.min.css" />
@@ -32,14 +33,25 @@
 
 
 <div class="container">
-    <h2>Create a post</h2>
+    @if (!isEditing)
+    {
+        <h2>Create a post</h2>
+    }
+    else
+    {
+        <h2>Edit a post</h2>
+    }
+    <br />
     <div class="row">
         <div class="col-md-12">
             <div id="fields">
-                @using (Html.BeginForm("Create", "Blog", null, FormMethod.Post, new { id = "ajax-contact-form" }))
+                @using (Html.BeginForm(!isEditing ? "Create" : "Edit", "Blog", null, FormMethod.Post, new { id = "ajax-contact-form" }))
                 {
                     @Html.AntiForgeryToken()
-
+                    if (isEditing)
+                    {
+                        @Html.HiddenFor(x => x.Id)
+                    }
                     <div class="form-group">
                         @Html.TextBoxFor(x => x.Title, new { placeholder = "Title", @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Title)
@@ -60,7 +72,7 @@
                         @Html.ValidationMessageFor(x => x.Tags)
                     </div>
 
-                    <input type="submit" value="Create" class="btn push" />
+                    <input type="submit" value="@(!isEditing ? "Create" : "Update"   )" class="btn push" />
                 }
             </div>
 
@@ -72,7 +84,7 @@
 <script>
     $(document).ready(function() {
         $('.summernote').summernote({
-            height: 150 //set editable area's height
+            height: 400 //set editable area's height
 //            codemirror: {
 //// codemirror options
 //                theme: 'monokai'

@@ -42,7 +42,7 @@ namespace CreaturesOfCode.Services
                 PublishDate = DateTime.UtcNow,
                 Category = cat,
             });
-            
+
             var split = tags.Split(',');
 
             foreach (var word in split)
@@ -93,7 +93,7 @@ namespace CreaturesOfCode.Services
                 _categoryRepository.Delete(post.Category);
 
             _postRepository.Delete(post);
-            
+
             return true;
         }
 
@@ -113,5 +113,76 @@ namespace CreaturesOfCode.Services
         {
             return _categoryRepository.GetAll().ToList();
         }
+
+        public Post EditPost(int id, string title, string content, string category, string tags)
+        {
+            var post = _postRepository.Get(id);
+
+            if (post == null) return null;
+
+            post.Title = title;
+            post.Content = content;
+            
+            var cat = _categoryRepository.Find(x => x.Name.ToLower() == category.ToLower()).SingleOrDefault() ??
+                _categoryRepository.Create(new Category
+                {
+                    Name = category,
+                });
+
+            
+            if (post.Category.Id != cat.Id)
+            {
+                if (post.Category.Posts.Count <= 1)
+                    _categoryRepository.Delete(post.Category);
+            }
+
+            post.Category = cat;
+            
+            var split = tags.Split(',');
+            var originalTags = new List<Tag>(post.Tags);
+            var newTags = new List<Tag>();
+
+            foreach (var word in split)
+            {
+                var trimmed = word.Replace(",", "").Trim();
+
+                var tag = _tagRepository.Find(x => x.Name.ToLower() == trimmed.ToLower()).SingleOrDefault();
+                if (tag != null)
+                {
+                    if (tag.Posts.Select(x => x.Id).ToList().Contains(post.Id))
+                    {
+                        newTags.Add(tag);
+                        continue;
+                    }
+                    tag.Posts.Add(post);
+                    _tagRepository.Update(tag);
+                }
+                else
+                {
+                    tag = new Tag
+                    {
+                        Name = trimmed,
+                        Posts = new List<Post>()
+                    };
+                    _tagRepository.Create(tag);
+                    tag.Posts.Add(post);
+                }
+                newTags.Add(tag);
+            }
+
+            var tagsForCleanup = originalTags.Where(x => !newTags.Contains(x)).ToList();
+
+            foreach (var tag in tagsForCleanup)
+            {
+                post.Tags.Remove(tag);
+                
+                if (tag.Posts.Count == 1)
+                    _tagRepository.Delete(tag);
+            }
+
+            _postRepository.Update(post);
+
+            return post;
+        }
     }
-}
+} 
