@@ -11,6 +11,7 @@ using CreaturesOfCode.Services;
 
 namespace CreatureOfCode.Web.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
     {
         private readonly IPostService _postservice;
@@ -22,6 +23,7 @@ namespace CreatureOfCode.Web.Controllers
             _uow = uow;
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var posts = _postservice.GetLatestPosts(20);
@@ -31,6 +33,7 @@ namespace CreatureOfCode.Web.Controllers
 
         }
 
+        [AllowAnonymous]
         public ActionResult FindByTag(string tag)
         {
             var posts = _postservice.GetPostsWithTag(tag);
@@ -41,6 +44,7 @@ namespace CreatureOfCode.Web.Controllers
             return View("Index", previews);
         }
 
+        [AllowAnonymous]
         public ActionResult Read(int id)
         {
             var post = _postservice.GetPostById(id);

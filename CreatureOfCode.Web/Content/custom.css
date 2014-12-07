@@ -69,8 +69,22 @@ p {
     color: rgb(1,105,136);
 }
 
-.category {
- color: rgb(1, 148, 174);
+.signin {
+    position: fixed;
+    right: 3em;
+    bottom: 0.5em;
+    text-decoration: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 30px;
+    padding: 0.1em 0.3em 0.1em;
+    display: none;
+    border-radius: 8px;
+    z-index: 500;
 }
 
 /*--Blog--*/
+
+.category {
+ color: rgb(1, 148, 174);
+}

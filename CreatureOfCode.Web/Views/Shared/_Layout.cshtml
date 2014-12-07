@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using CreaturesOfCode.Core
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -38,6 +39,10 @@
                             @*<i class="fa fa-phone-square marg-left5 marg-right5"></i> 0457-906745*@
                         </span>
                         <span class="top-info2">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <span style="color: #445B73 !important; font-size: 13px; margin-right: 15px;">Welcome back, @UserProfile.Current.Username!</span>
+                            }
                             <a href="#"><i class="fa fa-facebook marg-right5"></i></a>
                             <a href="#"><i class="fa fa-twitter marg-right5"></i></a>
                             <a href="#"><i class="fa fa-dribbble marg-right5"></i></a>
@@ -79,6 +84,12 @@
                             <li>
                                 <a href="#">Contact</a>
                             </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    @Html.ActionLink("Logout", "Logout", "Account")
+                                </li>
+                            }
                         </ul>
                     </div>
                     <!--END NAV-->
@@ -143,6 +154,10 @@
                 </div>
 
                 <div class="container">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a href="#" onclick="signin()"><i class="go-top signin fa fa-sign-in"></i></a>
+                    }
                     <a href="#"><i class="go-top hidden-phone hidden-tablet fa fa-angle-double-up"></i></a>
                 </div>
             </div>
@@ -172,6 +187,21 @@
                 limit: 9,
                 username: 'hotdiggitydoddo'
             })
+        </script>
+
+        <script src="https://cdn.auth0.com/js/lock-6.2.min.js"></script>
+        <script type="text/javascript">
+            var lock = new Auth0Lock('f5t9UFBiw6GEP0cFsxFgT1GrsOtJ0Xdl', 'creaturesofcode.auth0.com');
+
+            function signin() {
+                lock.show({
+                    callbackURL: 'http://localhost:39646/LoginCallback.ashx'
+                  , responseType: 'code'
+                  , authParams: {
+                      scope: 'openid profile'
+                  }
+                });
+            }
         </script>
     </body>
 </html>
