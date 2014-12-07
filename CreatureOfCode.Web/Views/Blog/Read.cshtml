@@ -17,7 +17,6 @@
 
 <script src="~/Scripts/syntax-highlighter/shCore.js"></script>
 <script src="~/Scripts/syntax-highlighter/shBrushCSharp.js"></script>
-@*<link href="~/Content/summernote-bs3.css" rel="stylesheet" />*@
 <link href="~/Content/syntax-highlighter/shCore.css" rel="stylesheet" />
 <link href="~/Content/syntax-highlighter/shCoreDefault.css" rel="stylesheet" />
 
@@ -31,7 +30,6 @@
         <h6>
             @Model.PublishDate.ToLocalTime().ToLongDateString() at @Model.PublishDate.ToLocalTime().ToShortTimeString()  - <span class="x-light meta category">@Model.Category.ToLower()</span>
         </h6>
-        <!-- post -->
         <div class="post">
             @Html.Raw(Model.Content)
         </div>
@@ -49,7 +47,7 @@
                 <ul class="fa-ul categories">
                     @foreach (var category in Model.AllCategories)
                     {
-                        <li><i class="fa-li fa fa-caret-right grey2"></i>@category</li>
+                        <li><i class="fa-li fa fa-caret-right grey2"></i>@category.Key (@category.Value)</li>
                     }
                 </ul>
             </div>
@@ -57,22 +55,19 @@
             <h6>Tags</h6>
             @foreach (var kvp in Model.AllTags)
             {
-                @*@Html.ActionLink(string.Format("#{0} ({1})", kvp.Key, @kvp.Value), "FindByTag", "Blog", new { tag = @kvp.Key }, new { @class = "badge", style = string.Format("font-size: {0}px", kvp.Value) })*@
                 @Html.ActionLink(string.Format("#{0}", kvp.Key), "FindByTag", "Blog", new { tag = @kvp.Key }, new { @class = "badge", style = string.Format("font-size: {0}px", kvp.Value) })
             }    
         </aside>
-        
     </div>
 </div>
 
 <script type="text/javascript">
-    SyntaxHighlighter.all()
-
+    SyntaxHighlighter.all();
 
 $('document').ready(function() {
     $('#delete').click(function(){
-        if (confirm('You sure?')) {
-            $('#deleteForm').submit(); //jquery
+        if (confirm('Are you sure you want to delete this post?')) {
+            $('#deleteForm').submit(); 
         }
         return false;
     });

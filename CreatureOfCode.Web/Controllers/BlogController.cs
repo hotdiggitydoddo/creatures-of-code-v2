@@ -63,7 +63,7 @@ namespace CreatureOfCode.Web.Controllers
                     PostIds = new List<int>(x.Posts.Select(o => o.Id).ToList())
                 })),
                 AllTags = new Dictionary<string, int>(),
-                AllCategories = new List<string>(categories.Select(x => x.Name))
+                AllCategories = categories.ToDictionary(x => x.Name, x => x.Posts.Count)
             };
 
             foreach (var kvp in tags)

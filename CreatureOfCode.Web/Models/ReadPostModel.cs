@@ -14,6 +14,6 @@ namespace CreatureOfCode.Web
         public DateTime PublishDate { get; set; }
         public List<TagModel> Tags { get; set; }
         public Dictionary<string, int> AllTags { get; set; }
-        public List<string> AllCategories { get; set; }
+        public Dictionary<string, int> AllCategories { get; set; }
     }
 }
